@@ -83,8 +83,19 @@ const VPlusAPI = (() => {
     },
 
     loginUser(data) {
-      return post("loginUser", data);
-    },
+  let phone = String(data?.phone || "")
+    .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+    .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(/\D/g, "");
+
+  // حذف صفر ابتدایی شماره
+  phone = phone.replace(/^0/, "");
+
+  return post("loginUser", {
+    ...data,
+    phone
+  });
+},
 
     updateUserProfile(data) {
       return post("updateUserProfile", data);
