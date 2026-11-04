@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101923">
+<title>پشتیبانی | VPLUS PART</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#101923;--orange:#ff762b;--bg:#f4f6f8;--muted:#84909a;--border:#e9edf1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Vazirmatn,sans-serif;color:#18232d}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+.container{width:min(1050px,92%);margin:auto}
+header{background:var(--dark);color:white}
+.nav{height:75px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:900;direction:ltr}
+.logo span{color:var(--orange)}
+.back{background:#263744;padding:10px 17px;border-radius:10px;font-size:12px}
+.hero{background:linear-gradient(120deg,#101923,#263746);color:white;text-align:center;padding:55px 0}
+.hero .icon{font-size:43px}
+.hero h1{font-size:28px;margin:12px 0}
+.hero p{color:#b8c3cc;font-size:13px}
+main{padding:40px 0 70px}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.card{background:white;border:1px solid var(--border);border-radius:17px;padding:25px;box-shadow:0 8px 25px #18232d08}
+h2{font-size:19px;margin:0 0 8px}
+.desc{font-size:12px;color:var(--muted);margin:0 0 24px}
+.field{margin-bottom:17px}
+label{display:block;font-size:11px;margin-bottom:8px;color:#66727c}
+input,textarea,select{width:100%;padding:13px;border:1px solid var(--border);border-radius:10px;background:#fafbfc;outline:none;font-size:12px}
+input:focus,textarea:focus,select:focus{border-color:var(--orange)}
+textarea{min-height:130px;resize:vertical;line-height:2}
+.submit{width:100%;border:0;background:var(--orange);color:white;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:12px}
+.submit:hover{background:#e86620}
+.info{background:#f7f8f9;padding:17px;border-radius:13px;margin-bottom:13px}
+.info strong{font-size:12px;display:block;margin-bottom:7px}
+.info p{font-size:11px;color:var(--muted);line-height:2;margin:0}
+.faq{margin-top:35px}
+.faq h2{margin-bottom:18px}
+details{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;padding:16px}
+summary{font-size:12px;font-weight:600;cursor:pointer}
+details p{font-size:11px;color:var(--muted);line-height:2;margin:12px 0 0}
+.note{background:#fff8e9;color:#8b6723;padding:13px;border-radius:10px;font-size:10px;line-height:2;margin-top:17px}
+footer{background:#0b121a;color:#83909b;text-align:center;padding:22px;font-size:10px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero h1{font-size:23px}.card{padding:19px}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a class="logo" href="index.html">VPLUS <span>PART</span></a>
+<a class="back" href="index.html">← بازگشت به فروشگاه</a>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<div class="icon">🎧</div>
+<h1>مرکز پشتیبانی VPLUS PART</h1>
+<p>ما اینجا هستیم تا تجربه بهتری از فروشگاه داشته باشید.</p>
+</div>
+</section>
+<main class="container">
+<div class="grid">
+<section class="card">
+<h2>ارسال درخواست پشتیبانی</h2>
+<p class="desc">سؤالات یا مشکلات خود را برای ما بنویسید.</p>
+<form id="supportForm">
+<div class="field">
+<label>نام و نام خانوادگی</label>
+<input id="name" required placeholder="نام شما">
+</div>
+<div class="field">
+<label>شماره تماس</label>
+<input id="phone" type="tel" required placeholder="09xxxxxxxxx">
+</div>
+<div class="field">
+<label>موضوع درخواست</label>
+<select id="subject" required>
+<option value="">انتخاب موضوع</option>
+<option>پیگیری سفارش</option>
+<option>مشکل در خرید</option>
+<option>مشخصات محصول</option>
+<option>پیشنهاد و انتقاد</option>
+<option>سایر موارد</option>
+</select>
+</div>
+<div class="field">
+<label>شرح درخواست</label>
+<textarea id="message" required placeholder="پیام خود را اینجا بنویسید..."></textarea>
+</div>
+<button class="submit" type="submit">ثبت درخواست نمایشی</button>
+</form>
+<div class="note">توجه: این فرم فعلاً نمایشی است و پیام‌ها به سرور ارسال نمی‌شوند.</div>
+</section>
+<aside>
+<div class="card">
+<h2>راه‌های ارتباطی</h2>
+<p class="desc">اطلاعات ارتباط با فروشگاه</p>
+<div class="info">
+<strong>📞 تلفن پشتیبانی</strong>
+<p>به‌زودی اعلام می‌شود</p>
+</div>
+<div class="info">
+<strong>✉️ ایمیل</strong>
+<p>به‌زودی اعلام می‌شود</p>
+</div>
+<div class="info">
+<strong>🕒 ساعات پاسخگویی</strong>
+<p>به‌زودی اعلام می‌شود</p>
+</div>
+<div class="info">
+<strong>📍 آدرس</strong>
+<p>اطلاعات فروشگاه به‌زودی تکمیل می‌شود.</p>
+</div>
+</div>
+</aside>
+</div>
+<section class="faq">
+<h2>سؤالات متداول</h2>
+<details>
+<summary>چطور می‌توانم سفارش خود را پیگیری کنم؟</summary>
+<p>پس از راه‌اندازی سیستم سفارش، امکان پیگیری سفارش از بخش حساب کاربری فراهم خواهد شد.</p>
+</details>
+<details>
+<summary>آیا امکان استعلام قیمت قطعات وجود دارد؟</summary>
+<p>بله، پس از تکمیل اطلاعات محصولات، امکان مشاهده یا استعلام قیمت فراهم می‌شود.</p>
+</details>
+<details>
+<summary>چطور می‌توانم قطعه مناسب خودروی خود را پیدا کنم؟</summary>
+<p>می‌توانید از جست‌وجو و دسته‌بندی محصولات استفاده کنید. امکانات جست‌وجوی پیشرفته در آینده تکمیل می‌شوند.</p>
+</details>
+<details>
+<summary>آیا فرم پشتیبانی فعلاً فعال است؟</summary>
+<p>در حال حاضر فرم صرفاً نمایشی است و ارسال واقعی درخواست هنوز فعال نشده است.</p>
+</details>
+</section>
+</main>
+<footer>© تمامی حقوق محفوظ است | VPLUS PART</footer>
+<script>
+document.getElementById('supportForm').addEventListener('submit',function(e){
+e.preventDefault();
+const phone=document.getElementById('phone').value.trim();
+if(!/^09\d{9}$/.test(phone)){
+alert('لطفاً شماره موبایل معتبر وارد کنید.');
+return;
+}
+alert('درخواست شما به صورت نمایشی ثبت شد. در نسخه فعلی پیامی به سرور ارسال نشده است.');
+this.reset();
+});
+</script>
+</body>
+</html>
