@@ -5,17 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101923">
 <title>حساب کاربری | VPLUS PART</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root {
+:root{
   --dark:#101923;
-  --dark2:#1c2b39;
+  --dark2:#263746;
   --orange:#ff762b;
   --bg:#f4f6f8;
   --muted:#84909a;
   --border:#e9edf1;
   --green:#16834a;
+  --red:#b33c28;
 }
 *{box-sizing:border-box}
 body{
@@ -48,7 +50,6 @@ header{background:var(--dark);color:white}
   border-radius:10px;
   font-size:12px;
 }
-
 .hero{
   background:linear-gradient(120deg,#101923,#263746);
   color:white;
@@ -72,170 +73,101 @@ main{padding:30px 0 65px}
 }
 .profile{text-align:center}
 .avatar{
-  width:78px;
-  height:78px;
-  border-radius:50%;
-  background:#fff0e8;
-  color:var(--orange);
-  display:grid;
-  place-items:center;
-  font-size:34px;
-  margin:0 auto 13px;
+  width:78px;height:78px;border-radius:50%;
+  background:#fff0e8;color:var(--orange);
+  display:grid;place-items:center;
+  font-size:34px;margin:0 auto 13px;
 }
 .profile h3{margin:0;font-size:16px}
-.profile p{
-  color:var(--muted);
-  font-size:12px;
-  margin:7px 0 14px;
-}
+.profile p{color:var(--muted);font-size:12px;margin:7px 0 14px}
 .status{
-  display:inline-block;
-  background:#fff0e8;
-  color:#e76520;
-  padding:6px 14px;
-  border-radius:30px;
-  font-size:10px;
+  display:inline-block;background:#fff0e8;color:#e76520;
+  padding:6px 14px;border-radius:30px;font-size:10px;
 }
 .menu{margin-top:18px}
 .menu button{
-  width:100%;
-  text-align:right;
-  border:0;
-  background:white;
-  padding:13px 12px;
-  border-radius:10px;
-  font-size:12px;
-  cursor:pointer;
-  color:#53606b;
-  margin-bottom:4px;
+  width:100%;text-align:right;border:0;background:white;
+  padding:13px 12px;border-radius:10px;font-size:12px;
+  cursor:pointer;color:#53606b;margin-bottom:4px;
 }
-.menu button.active,
-.menu button:hover{
-  background:#fff1e9;
-  color:#e76520;
+.menu button.active,.menu button:hover{
+  background:#fff1e9;color:#e76520;
 }
 .panel h2{font-size:19px;margin:0 0 8px}
-.sub{
-  font-size:12px;
-  color:var(--muted);
-  margin:0 0 24px;
-}
+.sub{font-size:12px;color:var(--muted);margin:0 0 24px}
 .fields{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:16px;
 }
 .field label{
-  display:block;
-  font-size:11px;
-  margin-bottom:8px;
-  color:#66727c;
+  display:block;font-size:11px;
+  margin-bottom:8px;color:#66727c;
 }
 .field input{
-  width:100%;
-  padding:13px;
+  width:100%;padding:13px;
   border:1px solid var(--border);
-  border-radius:10px;
-  outline:none;
-  background:#fafbfc;
-  font-size:12px;
-  color:#18232d;
+  border-radius:10px;outline:none;
+  background:#fafbfc;font-size:12px;color:#18232d;
 }
 .field input:focus{border-color:var(--orange)}
-.field input:disabled{
-  background:#f0f2f4;
-  color:#78838d;
-}
+.field input:disabled{background:#f0f2f4;color:#78838d}
 .full{grid-column:1/-1}
-
 .primary{
-  border:0;
-  background:var(--orange);
-  color:white;
-  padding:13px 23px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:12px;
-  margin-top:20px;
+  border:0;background:var(--orange);color:white;
+  padding:13px 23px;border-radius:10px;
+  font-weight:700;cursor:pointer;font-size:12px;margin-top:20px;
 }
 .primary:disabled{opacity:.6;cursor:not-allowed}
-.secondary{
-  border:1px solid var(--border);
-  background:white;
-  color:#34424d;
-  padding:12px 20px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:12px;
+.secondary,.danger{
+  padding:11px 17px;border-radius:10px;
+  cursor:pointer;font-size:12px;
 }
-.danger{
-  border:0;
-  background:#fff0ed;
-  color:#b33c28;
-  padding:12px 20px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:12px;
-}
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.secondary{border:1px solid var(--border);background:white;color:#34424d}
+.danger{border:0;background:#fff0ed;color:var(--red)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
 .stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-bottom:22px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;margin-bottom:22px;
 }
 .stat{
-  background:#f7f8f9;
-  border-radius:13px;
-  padding:17px;
-  text-align:center;
+  background:#f7f8f9;border-radius:13px;
+  padding:17px;text-align:center;
 }
-.stat strong{
-  display:block;
-  font-size:22px;
-  color:var(--orange);
-}
+.stat strong{display:block;font-size:22px;color:var(--orange)}
 .stat small{font-size:10px;color:var(--muted)}
-
 .hidden{display:none!important}
 .notice{
-  background:#fff8e9;
-  color:#8b6723;
-  padding:13px;
-  border-radius:10px;
-  font-size:11px;
-  line-height:2;
-  margin-top:18px;
+  background:#fff8e9;color:#8b6723;
+  padding:13px;border-radius:10px;
+  font-size:11px;line-height:2;margin-top:18px;
 }
 .message{
-  padding:13px;
-  border-radius:10px;
-  font-size:12px;
-  line-height:2;
-  margin-top:15px;
+  padding:13px;border-radius:10px;
+  font-size:12px;line-height:2;margin-top:15px;
   display:none;
 }
-.message.success{
-  display:block;
-  background:#eaf8ef;
-  color:#207344;
+.message.success{display:block;background:#eaf8ef;color:#207344}
+.message.error{display:block;background:#fff0ed;color:#b33c28}
+.order{
+  border:1px solid var(--border);
+  border-radius:12px;padding:15px;margin-bottom:12px;
 }
-.message.error{
-  display:block;
-  background:#fff0ed;
-  color:#b33c28;
+.order-head{
+  display:flex;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;
+}
+.order-info{
+  color:var(--muted);font-size:11px;
+  line-height:2;margin-top:10px;
+}
+.order-status{
+  color:#16834a;background:#eaf8ef;
+  padding:4px 9px;border-radius:20px;font-size:10px;
 }
 footer{
-  background:#0b121a;
-  color:#83909b;
-  text-align:center;
-  padding:22px;
-  font-size:10px;
+  background:#0b121a;color:#83909b;
+  text-align:center;padding:22px;font-size:10px;
 }
 @media(max-width:700px){
   .layout{grid-template-columns:1fr}
@@ -287,63 +219,43 @@ footer{
 
 <section class="card panel">
 
-  <!-- ثبت نام -->
   <div id="register">
     <h2>ایجاد حساب کاربری</h2>
     <p class="sub">برای ساخت حساب فقط شماره موبایل و رمز عبور نیاز است.</p>
 
     <form id="registerForm">
       <div class="fields">
-
         <div class="field full">
           <label>شماره موبایل *</label>
-          <input
-            id="regPhone"
-            type="tel"
-            inputmode="numeric"
-            maxlength="11"
-            autocomplete="tel"
-            placeholder="09123456789"
-            required>
+          <input id="regPhone" type="tel" inputmode="numeric"
+            maxlength="11" autocomplete="tel"
+            placeholder="09123456789" required>
         </div>
 
         <div class="field">
           <label>رمز عبور *</label>
-          <input
-            id="regPassword"
-            type="password"
-            minlength="8"
-            autocomplete="new-password"
-            placeholder="حداقل ۸ کاراکتر"
-            required>
+          <input id="regPassword" type="password"
+            minlength="8" autocomplete="new-password"
+            placeholder="حداقل ۸ کاراکتر" required>
         </div>
 
         <div class="field">
           <label>تکرار رمز عبور *</label>
-          <input
-            id="regPassword2"
-            type="password"
-            minlength="8"
-            autocomplete="new-password"
-            placeholder="تکرار رمز عبور"
-            required>
+          <input id="regPassword2" type="password"
+            minlength="8" autocomplete="new-password"
+            placeholder="تکرار رمز عبور" required>
         </div>
-
       </div>
 
-      <button class="primary" id="registerButton" type="submit">
-        ثبت‌نام و ایجاد حساب
-      </button>
+      <button class="primary" id="registerButton" type="submit">ثبت‌نام و ایجاد حساب</button>
     </form>
 
     <div id="registerMessage" class="message"></div>
-
     <div class="notice">
-      پس از ثبت‌نام می‌توانید وارد حساب خود شوید و اطلاعات تکمیلی مانند نام، ایمیل و آدرس را وارد کنید.
+      پس از ثبت‌نام می‌توانید وارد حساب خود شوید و اطلاعات تکمیلی را وارد کنید.
     </div>
   </div>
 
-  <!-- ورود -->
   <div id="login" class="hidden">
     <h2>ورود به حساب کاربری</h2>
     <p class="sub">با شماره موبایل و رمز عبور وارد شوید.</p>
@@ -352,44 +264,32 @@ footer{
       <div class="fields">
         <div class="field full">
           <label>شماره موبایل</label>
-          <input
-            id="loginPhone"
-            type="tel"
-            inputmode="numeric"
-            maxlength="11"
-            autocomplete="tel"
-            placeholder="09123456789"
-            required>
+          <input id="loginPhone" type="tel" inputmode="numeric"
+            maxlength="11" autocomplete="tel"
+            placeholder="09123456789" required>
         </div>
 
         <div class="field full">
           <label>رمز عبور</label>
-          <input
-            id="loginPassword"
-            type="password"
-            autocomplete="current-password"
-            placeholder="رمز عبور"
-            required>
+          <input id="loginPassword" type="password"
+            autocomplete="current-password" placeholder="رمز عبور" required>
         </div>
       </div>
 
       <button class="primary" id="loginButton" type="submit">ورود به حساب</button>
     </form>
-
     <div id="loginMessage" class="message"></div>
   </div>
 
-  <!-- اطلاعات شخصی -->
   <div id="profile" class="hidden">
     <h2>اطلاعات شخصی</h2>
     <p class="sub">اطلاعات خود را تکمیل یا ویرایش کنید.</p>
 
     <form id="profileForm">
       <div class="fields">
-
         <div class="field full">
           <label>نام و نام خانوادگی</label>
-          <input id="editName" maxlength="100" placeholder="نام کامل">
+          <input id="editName" maxlength="100" placeholder="نام کامل" required>
         </div>
 
         <div class="field">
@@ -421,47 +321,34 @@ footer{
           <label>کد پستی</label>
           <input id="editPostal" maxlength="20" placeholder="کد پستی">
         </div>
-
       </div>
 
-      <button class="primary" id="profileButton" type="submit">
-        ذخیره اطلاعات
-      </button>
+      <button class="primary" id="profileButton" type="submit">ذخیره اطلاعات</button>
     </form>
-
     <div id="profileMessage" class="message"></div>
   </div>
 
-  <!-- سفارش ها -->
   <div id="orders" class="hidden">
     <h2>سفارش‌های من</h2>
     <p class="sub">تاریخچه و وضعیت سفارش‌های شما</p>
 
     <div class="stats">
-      <div class="stat">
-        <strong>۰</strong>
-        <small>کل سفارش‌ها</small>
-      </div>
-      <div class="stat">
-        <strong>۰</strong>
-        <small>در حال ارسال</small>
-      </div>
-      <div class="stat">
-        <strong>۰</strong>
-        <small>تکمیل شده</small>
-      </div>
+      <div class="stat"><strong id="orderCount">۰</strong><small>کل سفارش‌ها</small></div>
+      <div class="stat"><strong id="shippingCount">۰</strong><small>در حال ارسال</small></div>
+      <div class="stat"><strong id="completedCount">۰</strong><small>تکمیل شده</small></div>
     </div>
 
-    <div class="notice">هنوز سفارشی برای حساب شما ثبت نشده است.</div>
+    <div id="ordersList">
+      <div class="notice">برای مشاهده سفارش‌ها، وارد حساب شوید.</div>
+    </div>
   </div>
 
-  <!-- امنیت -->
   <div id="security" class="hidden">
     <h2>امنیت حساب</h2>
     <p class="sub">مدیریت امنیت حساب کاربری</p>
-
     <div class="notice">
-      رمز عبور حساب باید فقط به‌صورت هش‌شده در سرور ذخیره شود. از ذخیره رمز عبور در مرورگر یا Google Sheets به‌صورت متن ساده خودداری می‌کنیم.
+      رمز عبور شما باید فقط به‌صورت هش‌شده در سرور ذخیره شود.
+      از اشتراک‌گذاری رمز عبور خودداری کنید.
     </div>
   </div>
 
@@ -474,7 +361,10 @@ footer{
 <script src="api.js"></script>
 
 <script>
+"use strict";
+
 const $ = id => document.getElementById(id);
+const SESSION_KEY = "vplus_session";
 
 let user = null;
 
@@ -494,15 +384,30 @@ function showMessage(id, message, type) {
   box.className = "message " + type;
 }
 
+function clearMessage(id) {
+  const box = $(id);
+  box.textContent = "";
+  box.className = "message";
+}
+
+function setLoading(button, loading, normalText) {
+  button.disabled = loading;
+  button.textContent = loading ? "لطفاً صبر کنید..." : normalText;
+}
+
+function getToken() {
+  return sessionStorage.getItem(SESSION_KEY);
+}
+
 function showPanel(id, button) {
-  if (["profile","orders","security"].includes(id) && !user) {
+  if (["profile", "orders", "security"].includes(id) && !user) {
     alert("برای مشاهده این بخش ابتدا وارد حساب کاربری شوید.");
-    showPanel("login", document.querySelector('[data-panel="login"]'));
-    return;
+    id = "login";
+    button = document.querySelector('[data-panel="login"]');
   }
 
-  document.querySelectorAll(".panel > div").forEach(panel => {
-    panel.classList.add("hidden");
+  ["register","login","profile","orders","security"].forEach(panel => {
+    $(panel).classList.add("hidden");
   });
 
   $(id).classList.remove("hidden");
@@ -514,11 +419,7 @@ function showPanel(id, button) {
   if (button) button.classList.add("active");
 
   if (id === "profile") fillProfileForm();
-}
-
-function setLoading(button, loading, text) {
-  button.disabled = loading;
-  button.textContent = loading ? "لطفاً صبر کنید..." : text;
+  if (id === "orders") loadOrders();
 }
 
 function fillProfileForm() {
@@ -533,7 +434,7 @@ function fillProfileForm() {
   $("editPostal").value = user.postalCode || "";
 }
 
-function updateProfile() {
+function updateProfileView() {
   if (!user) {
     $("profileName").textContent = "کاربر مهمان";
     $("profilePhone").textContent = "هنوز وارد حساب نشده‌اید";
@@ -549,146 +450,239 @@ function updateProfile() {
   fillProfileForm();
 }
 
-function saveSession(data) {
+function normalizeUser(source) {
+  source = source || {};
+
+  return {
+    userId: source.userId || source.UserID || "",
+    fullName: source.fullName || source.FullName || "",
+    phone: source.phone || source.Phone || "",
+    email: source.email || source.Email || "",
+    province: source.province || source.Province || "",
+    city: source.city || source.City || "",
+    address: source.address || source.Address || "",
+    postalCode: source.postalCode || source.PostalCode || ""
+  };
+}
+
+function saveUser(data) {
   user = {
     ...user,
-    ...data
+    ...normalizeUser(data)
   };
 
-  updateProfile();
+  updateProfileView();
+}
+
+async function restoreSession() {
+  const token = getToken();
+  if (!token) return;
+
+  try {
+    const result = await VPlusAPI.getMyProfile(token);
+
+    if (!result || result.success === false) {
+      throw new Error(result?.message || "نشست معتبر نیست.");
+    }
+
+    const account = result.user || result.data || result.profile || {};
+    saveUser(account);
+
+    showPanel("profile", document.querySelector('[data-panel="profile"]'));
+
+  } catch (error) {
+    sessionStorage.removeItem(SESSION_KEY);
+    user = null;
+    updateProfileView();
+    console.warn("Session restore failed:", error.message);
+  }
 }
 
 function logout() {
   user = null;
-  sessionStorage.removeItem("vplus_session");
-  updateProfile();
-  alert("از حساب کاربری خارج شدید.");
+  sessionStorage.removeItem(SESSION_KEY);
+  updateProfileView();
   showPanel("login", document.querySelector('[data-panel="login"]'));
+  alert("از حساب کاربری خارج شدید.");
+}
+
+function formatNumber(value) {
+  const n = Number(value || 0);
+  return new Intl.NumberFormat("fa-IR").format(n);
+}
+
+function formatPrice(value) {
+  const n = Number(normalizeDigits(value));
+  if (!Number.isFinite(n)) return "—";
+  return formatNumber(n) + " تومان";
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[c]);
+}
+
+async function loadOrders() {
+  const token = getToken();
+  const list = $("ordersList");
+
+  if (!token) {
+    list.innerHTML = '<div class="notice">برای مشاهده سفارش‌ها وارد حساب شوید.</div>';
+    return;
+  }
+
+  list.innerHTML = '<div class="notice">در حال دریافت سفارش‌ها...</div>';
+
+  try {
+    const result = await VPlusAPI.myOrders(token);
+    const orders = result.orders || result.data || [];
+
+    if (!Array.isArray(orders) || !orders.length) {
+      $("orderCount").textContent = "۰";
+      $("shippingCount").textContent = "۰";
+      $("completedCount").textContent = "۰";
+      list.innerHTML = '<div class="notice">هنوز سفارشی برای حساب شما ثبت نشده است.</div>';
+      return;
+    }
+
+    const shipping = orders.filter(o =>
+      ["shipped","در حال ارسال"].includes(String(o.OrderStatus || o.status || "").toLowerCase())
+    ).length;
+
+    const completed = orders.filter(o =>
+      ["delivered","completed","تکمیل شده"].includes(String(o.OrderStatus || o.status || "").toLowerCase())
+    ).length;
+
+    $("orderCount").textContent = formatNumber(orders.length);
+    $("shippingCount").textContent = formatNumber(shipping);
+    $("completedCount").textContent = formatNumber(completed);
+
+    list.innerHTML = orders.map(order => {
+      const number = order.OrderNumber || order.orderNumber || order.OrderID || "—";
+      const status = order.OrderStatus || order.status || "در انتظار بررسی";
+      const total = order.TotalAmount ?? order.totalAmount ?? 0;
+      const date = order.PlacedAt || order.createdAt || "";
+
+      return `
+        <article class="order">
+          <div class="order-head">
+            <span>سفارش ${escapeHTML(number)}</span>
+            <span class="order-status">${escapeHTML(status)}</span>
+          </div>
+          <div class="order-info">
+            مبلغ: ${escapeHTML(formatPrice(total))}<br>
+            تاریخ ثبت: ${escapeHTML(date || "—")}
+          </div>
+        </article>`;
+    }).join("");
+
+  } catch (error) {
+    list.innerHTML = `<div class="notice">${escapeHTML(error.message || "دریافت سفارش‌ها ناموفق بود.")}</div>`;
+  }
 }
 
 /* ثبت نام */
-$("registerForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+$("registerForm").addEventListener("submit", async event => {
+  event.preventDefault();
 
   const button = $("registerButton");
   const phone = normalizeDigits($("regPhone").value.trim());
   const password = $("regPassword").value;
   const password2 = $("regPassword2").value;
 
+  clearMessage("registerMessage");
+
   if (!validPhone(phone)) {
-    showMessage("registerMessage","شماره موبایل معتبر نیست.","error");
+    showMessage("registerMessage", "شماره موبایل معتبر نیست.", "error");
     return;
   }
 
   if (password.length < 8) {
-    showMessage("registerMessage","رمز عبور باید حداقل ۸ کاراکتر باشد.","error");
+    showMessage("registerMessage", "رمز عبور باید حداقل ۸ کاراکتر باشد.", "error");
     return;
   }
 
   if (password !== password2) {
-    showMessage("registerMessage","رمزهای عبور یکسان نیستند.","error");
+    showMessage("registerMessage", "رمزهای عبور یکسان نیستند.", "error");
     return;
   }
 
-  if (!window.VPlusAPI || typeof VPlusAPI.registerUser !== "function") {
-    showMessage("registerMessage","فایل API یا سرویس ثبت‌نام آماده نیست.","error");
-    return;
-  }
-
-  setLoading(button,true,"ثبت‌نام و ایجاد حساب");
+  setLoading(button, true, "ثبت‌نام و ایجاد حساب");
 
   try {
-    const result = await VPlusAPI.registerUser({
-      phone,
-      password
-    });
+    const result = await VPlusAPI.registerUser({ phone, password });
 
     if (!result || result.success === false) {
       throw new Error(result?.message || "ثبت‌نام انجام نشد.");
     }
 
     $("registerForm").reset();
+    $("loginPhone").value = phone;
+
     showMessage(
       "registerMessage",
       result.message || "ثبت‌نام با موفقیت انجام شد. اکنون وارد حساب شوید.",
       "success"
     );
 
-    $("loginPhone").value = phone;
     showPanel("login", document.querySelector('[data-panel="login"]'));
 
-  } catch(error) {
-    showMessage("registerMessage",error.message || "خطا در ثبت‌نام.","error");
+  } catch (error) {
+    showMessage("registerMessage", error.message || "خطا در ثبت‌نام.", "error");
   } finally {
-    setLoading(button,false,"ثبت‌نام و ایجاد حساب");
+    setLoading(button, false, "ثبت‌نام و ایجاد حساب");
   }
 });
 
 /* ورود */
-$("loginForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
 
   const button = $("loginButton");
   const phone = normalizeDigits($("loginPhone").value.trim());
   const password = $("loginPassword").value;
 
+  clearMessage("loginMessage");
+
   if (!validPhone(phone)) {
-    showMessage("loginMessage","شماره موبایل معتبر نیست.","error");
+    showMessage("loginMessage", "شماره موبایل معتبر نیست.", "error");
     return;
   }
 
-  if (!password) {
-    showMessage("loginMessage","رمز عبور را وارد کنید.","error");
-    return;
-  }
-
-  if (!window.VPlusAPI || typeof VPlusAPI.loginUser !== "function") {
-    showMessage("loginMessage","سرویس ورود هنوز در API فعال نشده است.","error");
-    return;
-  }
-
-  setLoading(button,true,"ورود به حساب");
+  setLoading(button, true, "ورود به حساب");
 
   try {
-    const result = await VPlusAPI.loginUser({phone,password});
+    const result = await VPlusAPI.loginUser({ phone, password });
 
-    if (!result || result.success === false) {
-      throw new Error(result?.message || "شماره موبایل یا رمز عبور اشتباه است.");
+    if (!result || result.success === false || !result.token) {
+      throw new Error(result?.message || "ورود انجام نشد یا توکن دریافت نشد.");
     }
 
-    const account = result.user || result.data || {};
+    sessionStorage.setItem(SESSION_KEY, result.token);
 
-    if (!result.token) {
-      throw new Error("سرور توکن ورود معتبر ارسال نکرد.");
-    }
-
-    sessionStorage.setItem("vplus_session", result.token);
-
-    saveSession({
-      phone,
-      fullName: account.fullName || "",
-      email: account.email || "",
-      province: account.province || "",
-      city: account.city || "",
-      address: account.address || "",
-      postalCode: account.postalCode || ""
-    });
+    const account = normalizeUser(result.user || result.data || {});
+    saveUser({ ...account, phone });
 
     $("loginForm").reset();
     showPanel("profile", document.querySelector('[data-panel="profile"]'));
 
-  } catch(error) {
-    showMessage("loginMessage",error.message || "ورود انجام نشد.","error");
+  } catch (error) {
+    showMessage("loginMessage", error.message || "ورود انجام نشد.", "error");
   } finally {
-    setLoading(button,false,"ورود به حساب");
+    setLoading(button, false, "ورود به حساب");
   }
 });
 
-/* ذخیره اطلاعات تکمیلی */
-$("profileForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+/* ذخیره اطلاعات پروفایل */
+$("profileForm").addEventListener("submit", async event => {
+  event.preventDefault();
 
-  if (!user) {
+  if (!user || !getToken()) {
     alert("ابتدا وارد حساب کاربری شوید.");
     return;
   }
@@ -696,6 +690,7 @@ $("profileForm").addEventListener("submit", async function(e) {
   const button = $("profileButton");
 
   const data = {
+    token: getToken(),
     fullName: $("editName").value.trim(),
     email: $("editEmail").value.trim(),
     province: $("editProvince").value.trim(),
@@ -705,46 +700,41 @@ $("profileForm").addEventListener("submit", async function(e) {
   };
 
   if (!data.fullName) {
-    showMessage("profileMessage","نام و نام خانوادگی را وارد کنید.","error");
+    showMessage("profileMessage", "نام و نام خانوادگی را وارد کنید.", "error");
     return;
   }
 
   if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    showMessage("profileMessage","ایمیل معتبر نیست.","error");
+    showMessage("profileMessage", "ایمیل معتبر نیست.", "error");
     return;
   }
 
-  if (!window.VPlusAPI || typeof VPlusAPI.updateUserProfile !== "function") {
-    showMessage("profileMessage","سرویس ویرایش اطلاعات هنوز در API فعال نشده است.","error");
-    return;
-  }
-
-  setLoading(button,true,"ذخیره اطلاعات");
+  setLoading(button, true, "ذخیره اطلاعات");
 
   try {
-    const token = sessionStorage.getItem("vplus_session");
-
-    const result = await VPlusAPI.updateUserProfile({
-      token,
-      ...data
-    });
+    const result = await VPlusAPI.updateUserProfile(data);
 
     if (!result || result.success === false) {
       throw new Error(result?.message || "ذخیره اطلاعات انجام نشد.");
     }
 
-    saveSession(data);
-    showMessage("profileMessage","اطلاعات با موفقیت ذخیره شد.","success");
+    saveUser({
+      ...user,
+      ...data
+    });
 
-  } catch(error) {
-    showMessage("profileMessage",error.message || "خطا در ذخیره اطلاعات.","error");
+    showMessage("profileMessage", result.message || "اطلاعات با موفقیت ذخیره شد.", "success");
+
+  } catch (error) {
+    showMessage("profileMessage", error.message || "خطا در ذخیره اطلاعات.", "error");
   } finally {
-    setLoading(button,false,"ذخیره اطلاعات");
+    setLoading(button, false, "ذخیره اطلاعات");
   }
 });
 
-/* بازیابی وضعیت نمایشی پروفایل در همین نشست */
-updateProfile();
+/* شروع صفحه */
+updateProfileView();
+restoreSession();
 </script>
 
 </body>
