@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -221,10 +222,17 @@ footer{
 
   <div id="register">
     <h2>ایجاد حساب کاربری</h2>
-    <p class="sub">برای ساخت حساب فقط شماره موبایل و رمز عبور نیاز است.</p>
+    <p class="sub">برای ساخت حساب، نام و نام خانوادگی، شماره موبایل و رمز عبور را وارد کنید.</p>
 
     <form id="registerForm">
       <div class="fields">
+
+        <div class="field full">
+          <label>نام و نام خانوادگی *</label>
+          <input id="regFullName" type="text" maxlength="100"
+            autocomplete="name" placeholder="نام و نام خانوادگی" required>
+        </div>
+
         <div class="field full">
           <label>شماره موبایل *</label>
           <input id="regPhone" type="tel" inputmode="numeric"
@@ -245,6 +253,7 @@ footer{
             minlength="8" autocomplete="new-password"
             placeholder="تکرار رمز عبور" required>
         </div>
+
       </div>
 
       <button class="primary" id="registerButton" type="submit">ثبت‌نام و ایجاد حساب</button>
@@ -591,11 +600,24 @@ $("registerForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   const button = $("registerButton");
+  const fullName = $("regFullName").value.trim();
   const phone = normalizeDigits($("regPhone").value.trim());
   const password = $("regPassword").value;
   const password2 = $("regPassword2").value;
 
   clearMessage("registerMessage");
+
+  if (!fullName) {
+    showMessage("registerMessage", "نام و نام خانوادگی را وارد کنید.", "error");
+    $("regFullName").focus();
+    return;
+  }
+
+  if (fullName.length < 3) {
+    showMessage("registerMessage", "نام و نام خانوادگی باید حداقل ۳ کاراکتر باشد.", "error");
+    $("regFullName").focus();
+    return;
+  }
 
   if (!validPhone(phone)) {
     showMessage("registerMessage", "شماره موبایل معتبر نیست.", "error");
@@ -615,7 +637,7 @@ $("registerForm").addEventListener("submit", async event => {
   setLoading(button, true, "ثبت‌نام و ایجاد حساب");
 
   try {
-    const result = await VPlusAPI.registerUser({ phone, password });
+    const result = await VPlusAPI.registerUser({ fullName, phone, password });
 
     if (!result || result.success === false) {
       throw new Error(result?.message || "ثبت‌نام انجام نشد.");
