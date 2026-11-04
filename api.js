@@ -83,19 +83,8 @@ const VPlusAPI = (() => {
     },
 
     loginUser(data) {
-  const phone = String(data?.phone || "")
-    .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
-    .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))
-    .replace(/\D/g, "")
-    .replace(/^0098/, "")
-    .replace(/^98/, "")
-    .replace(/^0/, "");
-
-  return post("loginUser", {
-    ...data,
-    phone
-  });
-},
+      return post("loginUser", data);
+    },
 
     updateUserProfile(data) {
       return post("updateUserProfile", data);
