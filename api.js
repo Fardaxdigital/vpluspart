@@ -1,25 +1,34 @@
-
 const VPlusAPI = (() => {
+  "use strict";
+
   const BASE_URL =
     "https://script.google.com/macros/s/AKfycbzqvdpRGNYw5uXeYfLggjdBGINxBvbVIssQkdlwbWUY8xBSVgyDH5r2_eKGfjqP5zFnzg/exec";
 
   async function request(url, options = {}) {
+    let response;
+
     try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-
-      if (!response.ok || result.success === false) {
-        throw new Error(result.message || "خطا در ارتباط با سرور");
-      }
-
-      return result;
+      response = await fetch(url, options);
     } catch (error) {
-      console.error("VPLUS API Error:", error);
-      throw error;
+      throw new Error("ارتباط با سرور برقرار نشد. اتصال اینترنت را بررسی کنید.");
     }
+
+    let result;
+
+    try {
+      result = await response.json();
+    } catch (error) {
+      throw new Error("پاسخ سرور قابل خواندن نیست. انتشار Web App را بررسی کنید.");
+    }
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || "درخواست با خطا مواجه شد.");
+    }
+
+    return result;
   }
 
-  async function get(action, params = {}) {
+  function get(action, params = {}) {
     const query = new URLSearchParams({
       action,
       ...params
@@ -28,7 +37,7 @@ const VPlusAPI = (() => {
     return request(`${BASE_URL}?${query.toString()}`);
   }
 
-  async function post(action, data = {}) {
+  function post(action, data = {}) {
     return request(BASE_URL, {
       method: "POST",
       headers: {
@@ -57,6 +66,10 @@ const VPlusAPI = (() => {
       return get("product", { id });
     },
 
+    productByCode(code) {
+      return get("product", { code });
+    },
+
     categories() {
       return get("categories");
     },
@@ -67,6 +80,22 @@ const VPlusAPI = (() => {
 
     registerUser(data) {
       return post("registerUser", data);
+    },
+
+    loginUser(data) {
+      return post("loginUser", data);
+    },
+
+    updateUserProfile(data) {
+      return post("updateUserProfile", data);
+    },
+
+    getMyProfile(token) {
+      return get("getMyProfile", { token });
+    },
+
+    myOrders(token) {
+      return get("myOrders", { token });
     },
 
     createSupportTicket(data) {
