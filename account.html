@@ -1,19 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101923">
 <title>حساب کاربری | VPLUS PART</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{--dark:#101923;--dark2:#1d2c39;--orange:#ff762b;--bg:#f4f6f8;--muted:#84909a;--border:#e9edf1}
+:root {
+  --dark:#101923;
+  --orange:#ff762b;
+  --bg:#f4f6f8;
+  --muted:#84909a;
+  --border:#e9edf1;
+}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);font-family:Vazirmatn,sans-serif;color:#18232d}
 a{text-decoration:none;color:inherit}
 button,input{font-family:inherit}
 .container{width:min(1050px,92%);margin:auto}
-header{background:var(--dark);color:white;box-shadow:0 5px 20px #0002}
+header{background:var(--dark);color:white}
 .nav{height:75px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:22px;font-weight:900;direction:ltr}
 .logo span{color:var(--orange)}
@@ -40,122 +48,342 @@ main{padding:35px 0 65px}
 .field input:focus{border-color:var(--orange)}
 .full{grid-column:1/-1}
 .primary{border:0;background:var(--orange);color:white;padding:12px 23px;border-radius:10px;font-weight:700;cursor:pointer;font-size:12px;margin-top:20px}
+.primary:disabled{opacity:.6;cursor:not-allowed}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:25px}
 .stat{background:#f7f8f9;border-radius:13px;padding:17px;text-align:center}
 .stat strong{display:block;font-size:22px;color:var(--orange)}
 .stat small{font-size:10px;color:var(--muted)}
-.order{border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.order strong{font-size:12px}
-.order small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
-.order span{background:#fff0e8;color:#e76520;padding:6px 10px;border-radius:20px;font-size:10px}
-.hidden{display:none}
+.hidden{display:none!important}
 .notice{background:#fff8e9;color:#8b6723;padding:13px;border-radius:10px;font-size:11px;line-height:2;margin-top:18px}
+.message{padding:13px;border-radius:10px;font-size:12px;line-height:2;margin-top:15px;display:none}
+.message.success{display:block;background:#eaf8ef;color:#207344}
+.message.error{display:block;background:#fff0ed;color:#b33c28}
 footer{background:#0b121a;color:#83909b;text-align:center;padding:22px;font-size:10px}
-@media(max-width:700px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.full{grid-column:auto}.stats{gap:7px}.stat{padding:12px 5px}.order{align-items:flex-start;flex-direction:column}.hero h1{font-size:23px}}
+@media(max-width:700px){
+.layout{grid-template-columns:1fr}
+.fields{grid-template-columns:1fr}
+.full{grid-column:auto}
+.stats{gap:7px}
+.stat{padding:12px 5px}
+.hero h1{font-size:23px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <div class="container nav">
 <a class="logo" href="index.html">VPLUS <span>PART</span></a>
 <a class="back" href="index.html">← بازگشت به فروشگاه</a>
 </div>
 </header>
+
 <section class="hero">
 <div class="container">
 <h1>حساب کاربری من</h1>
-<p>مدیریت اطلاعات و مشاهده وضعیت حساب کاربری</p>
+<p>مدیریت اطلاعات و حساب کاربری</p>
 </div>
 </section>
+
 <main class="container">
 <div class="layout">
+
 <aside>
 <div class="card profile">
 <div class="avatar">👤</div>
 <h3 id="profileName">کاربر مهمان</h3>
-<p id="profileEmail">برای ورود یا ثبت‌نام اقدام کنید</p>
-<span class="status">حساب نمایشی</span>
+<p id="profilePhone">برای ثبت‌نام اقدام کنید</p>
+<span class="status" id="profileStatus">مهمان</span>
 </div>
+
 <div class="card menu">
-<button class="active" onclick="showPanel('login',this)">🔐 ورود / ثبت‌نام</button>
-<button onclick="showPanel('profile',this)">👤 اطلاعات شخصی</button>
+<button class="active" onclick="showPanel('register',this)">👤 ثبت‌نام</button>
+<button onclick="showPanel('login',this)">🔐 ورود</button>
+<button onclick="showPanel('profile',this)">📋 اطلاعات شخصی</button>
 <button onclick="showPanel('orders',this)">📦 سفارش‌های من</button>
 <button onclick="showPanel('security',this)">🛡️ امنیت حساب</button>
 </div>
 </aside>
+
 <section class="card panel">
-<div id="login">
-<h2>ورود به حساب کاربری</h2>
-<p class="sub">برای ورود اطلاعات خود را وارد کنید.</p>
+
+<div id="register">
+<h2>ایجاد حساب کاربری</h2>
+<p class="sub">اطلاعات خود را برای ثبت‌نام وارد کنید.</p>
+
+<form id="registerForm">
 <div class="fields">
-<div class="field full"><label>نام و نام خانوادگی</label><input id="name" placeholder="نام خود را وارد کنید"></div>
-<div class="field full"><label>شماره موبایل</label><input id="phone" type="tel" placeholder="09xxxxxxxxx"></div>
-<div class="field full"><label>ایمیل (اختیاری)</label><input id="email" type="email" placeholder="example@email.com"></div>
+
+<div class="field full">
+<label>نام و نام خانوادگی *</label>
+<input id="regName" required maxlength="100" placeholder="نام کامل">
 </div>
-<button class="primary" onclick="login()">ورود نمایشی</button>
-<div class="notice">این بخش صرفاً نمایشی است. اطلاعات شما به سرور ارسال یا در پایگاه داده ذخیره نمی‌شود.</div>
+
+<div class="field">
+<label>شماره موبایل *</label>
+<input id="regPhone" type="tel" required maxlength="11" placeholder="09xxxxxxxxx">
 </div>
+
+<div class="field">
+<label>ایمیل</label>
+<input id="regEmail" type="email" maxlength="150" placeholder="example@email.com">
+</div>
+
+<div class="field">
+<label>استان</label>
+<input id="regProvince" maxlength="80" placeholder="استان">
+</div>
+
+<div class="field">
+<label>شهر</label>
+<input id="regCity" maxlength="80" placeholder="شهر">
+</div>
+
+<div class="field full">
+<label>آدرس</label>
+<input id="regAddress" maxlength="500" placeholder="آدرس محل سکونت">
+</div>
+
+<div class="field">
+<label>کد پستی</label>
+<input id="regPostal" maxlength="20" placeholder="کد پستی">
+</div>
+
+</div>
+
+<button class="primary" id="registerButton" type="submit">ثبت‌نام و ایجاد حساب</button>
+</form>
+
+<div id="registerMessage" class="message"></div>
+<div class="notice">
+با ثبت‌نام، اطلاعات واردشده در پایگاه اطلاعاتی فروشگاه ذخیره می‌شود.
+</div>
+</div>
+
+<div id="login" class="hidden">
+<h2>ورود به حساب</h2>
+<p class="sub">ورود واقعی هنوز فعال نشده است.</p>
+
+<div class="field">
+<label>شماره موبایل</label>
+<input id="loginPhone" type="tel" placeholder="09xxxxxxxxx">
+</div>
+
+<button class="primary" onclick="demoLogin()">ورود نمایشی</button>
+
+<div class="notice">
+احراز هویت، ارسال کد یک‌بارمصرف و بررسی شماره موبایل در نسخه بعدی پیاده‌سازی می‌شود.
+</div>
+</div>
+
 <div id="profile" class="hidden">
 <h2>اطلاعات شخصی</h2>
-<p class="sub">اطلاعات نمایشی حساب شما</p>
+<p class="sub">اطلاعات ذخیره‌شده حساب شما</p>
+
 <div class="fields">
-<div class="field"><label>نام</label><input id="editName" placeholder="نام"></div>
-<div class="field"><label>شماره موبایل</label><input id="editPhone" placeholder="شماره موبایل"></div>
-<div class="field full"><label>ایمیل</label><input id="editEmail" placeholder="ایمیل"></div>
+<div class="field full">
+<label>نام و نام خانوادگی</label>
+<input id="editName">
+</div>
+<div class="field">
+<label>شماره موبایل</label>
+<input id="editPhone" disabled>
+</div>
+<div class="field">
+<label>ایمیل</label>
+<input id="editEmail">
+</div>
+</div>
+
+<div class="notice">
+ویرایش اطلاعات در این نسخه فقط در مرورگر انجام می‌شود و هنوز به سرور متصل نیست.
 </div>
 <button class="primary" onclick="saveProfile()">ذخیره نمایشی</button>
 </div>
+
 <div id="orders" class="hidden">
 <h2>سفارش‌های من</h2>
-<p class="sub">وضعیت سفارش‌های شما در فروشگاه</p>
+<p class="sub">تاریخچه سفارش‌های شما</p>
 <div class="stats">
 <div class="stat"><strong>۰</strong><small>کل سفارش‌ها</small></div>
 <div class="stat"><strong>۰</strong><small>در حال ارسال</small></div>
 <div class="stat"><strong>۰</strong><small>تکمیل شده</small></div>
 </div>
-<div class="notice">هنوز سفارشی ثبت نشده است. این بخش در نسخه نمایشی است.</div>
+<div class="notice">هنوز سفارشی ثبت نشده است.</div>
 </div>
+
 <div id="security" class="hidden">
 <h2>امنیت حساب</h2>
-<p class="sub">تنظیمات امنیتی حساب کاربری</p>
-<div class="notice">در نسخه فعلی ورود واقعی، رمز عبور و احراز هویت فعال نیستند. این امکانات در نسخه بعدی قابل پیاده‌سازی هستند.</div>
+<p class="sub">وضعیت امنیت حساب کاربری</p>
+<div class="notice">
+ورود با رمز عبور یا کد یک‌بارمصرف هنوز فعال نشده است. اطلاعات حساس مانند رمز عبور در این فرم دریافت نمی‌شود.
 </div>
+</div>
+
 </section>
 </div>
 </main>
+
 <footer>© تمامی حقوق محفوظ است | VPLUS PART</footer>
+
+<script src="api.js"></script>
+
 <script>
-let user={name:"",phone:"",email:""};
-function showPanel(id,btn){
-document.querySelectorAll('.panel>div').forEach(x=>x.classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-document.querySelectorAll('.menu button').forEach(x=>x.classList.remove('active'));
-btn.classList.add('active');
+let user = null;
+
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel>div').forEach(x => {
+    x.classList.add('hidden');
+  });
+
+  document.getElementById(id).classList.remove('hidden');
+
+  document.querySelectorAll('.menu button').forEach(x => {
+    x.classList.remove('active');
+  });
+
+  btn.classList.add('active');
 }
-function login(){
-let name=document.getElementById('name').value.trim();
-let phone=document.getElementById('phone').value.trim();
-let email=document.getElementById('email').value.trim();
-if(!name||!phone){alert('لطفاً نام و شماره موبایل را وارد کنید.');return;}
-if(!/^09\d{9}$/.test(phone)){alert('شماره موبایل معتبر نیست.');return;}
-user={name,phone,email};
-updateProfile();
-alert('ورود نمایشی با موفقیت انجام شد.');
+
+function showMessage(id, message, type) {
+  const box = document.getElementById(id);
+  box.textContent = message;
+  box.className = 'message ' + type;
 }
-function updateProfile(){
-document.getElementById('profileName').textContent=user.name||'کاربر مهمان';
-document.getElementById('profileEmail').textContent=user.email||user.phone||'حساب نمایشی';
-document.getElementById('editName').value=user.name;
-document.getElementById('editPhone').value=user.phone;
-document.getElementById('editEmail').value=user.email;
+
+function normalizeDigits(value) {
+  return value
+    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+    .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
 }
-function saveProfile(){
-user.name=document.getElementById('editName').value.trim();
-user.phone=document.getElementById('editPhone').value.trim();
-user.email=document.getElementById('editEmail').value.trim();
-updateProfile();
-alert('اطلاعات به صورت نمایشی به‌روزرسانی شد.');
+
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const button = document.getElementById('registerButton');
+  const phone = normalizeDigits(document.getElementById('regPhone').value.trim());
+
+  const data = {
+    fullName: document.getElementById('regName').value.trim(),
+    phone: phone,
+    email: document.getElementById('regEmail').value.trim(),
+    province: document.getElementById('regProvince').value.trim(),
+    city: document.getElementById('regCity').value.trim(),
+    address: document.getElementById('regAddress').value.trim(),
+    postalCode: normalizeDigits(document.getElementById('regPostal').value.trim())
+  };
+
+  if (!/^09\d{9}$/.test(phone)) {
+    showMessage('registerMessage', 'شماره موبایل معتبر نیست.', 'error');
+    return;
+  }
+
+  if (!data.fullName) {
+    showMessage('registerMessage', 'نام و نام خانوادگی را وارد کنید.', 'error');
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'در حال ثبت اطلاعات...';
+
+  try {
+    const result = await VPlusAPI.registerUser(data);
+
+    if (result.success === false) {
+      throw new Error(result.message || 'ثبت‌نام انجام نشد.');
+    }
+
+    user = data;
+
+    try {
+      localStorage.setItem('vplus_user', JSON.stringify(data));
+    } catch (storageError) {
+      console.warn('Local storage unavailable');
+    }
+
+    updateProfile();
+
+    showMessage(
+      'registerMessage',
+      result.message || 'اطلاعات با موفقیت ثبت شد.',
+      'success'
+    );
+
+  } catch (error) {
+    showMessage(
+      'registerMessage',
+      error.message || 'ارتباط با سرور برقرار نشد.',
+      'error'
+    );
+  } finally {
+    button.disabled = false;
+    button.textContent = 'ثبت‌نام و ایجاد حساب';
+  }
+});
+
+function updateProfile() {
+  if (!user) return;
+
+  document.getElementById('profileName').textContent =
+    user.fullName || 'کاربر';
+
+  document.getElementById('profilePhone').textContent =
+    user.phone || '';
+
+  document.getElementById('profileStatus').textContent =
+    'ثبت‌نام شده';
+
+  document.getElementById('editName').value =
+    user.fullName || '';
+
+  document.getElementById('editPhone').value =
+    user.phone || '';
+
+  document.getElementById('editEmail').value =
+    user.email || '';
+}
+
+function demoLogin() {
+  const phone = normalizeDigits(
+    document.getElementById('loginPhone').value.trim()
+  );
+
+  if (!/^09\d{9}$/.test(phone)) {
+    alert('شماره موبایل معتبر وارد کنید.');
+    return;
+  }
+
+  alert('ورود واقعی هنوز فعال نشده است.');
+}
+
+function saveProfile() {
+  if (!user) {
+    alert('ابتدا ثبت‌نام کنید.');
+    return;
+  }
+
+  user.fullName = document.getElementById('editName').value.trim();
+  user.email = document.getElementById('editEmail').value.trim();
+
+  try {
+    localStorage.setItem('vplus_user', JSON.stringify(user));
+  } catch (error) {}
+
+  updateProfile();
+  alert('اطلاعات در این مرورگر ذخیره شد.');
+}
+
+try {
+  const saved = localStorage.getItem('vplus_user');
+  if (saved) {
+    user = JSON.parse(saved);
+    updateProfile();
+  }
+} catch (error) {
+  console.warn('Could not load saved profile');
 }
 </script>
+
 </body>
 </html>
