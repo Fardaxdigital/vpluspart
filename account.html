@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101923">
+<title>حساب کاربری | VPLUS PART</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#101923;--dark2:#1d2c39;--orange:#ff762b;--bg:#f4f6f8;--muted:#84909a;--border:#e9edf1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Vazirmatn,sans-serif;color:#18232d}
+a{text-decoration:none;color:inherit}
+button,input{font-family:inherit}
+.container{width:min(1050px,92%);margin:auto}
+header{background:var(--dark);color:white;box-shadow:0 5px 20px #0002}
+.nav{height:75px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:900;direction:ltr}
+.logo span{color:var(--orange)}
+.back{background:#263744;padding:10px 17px;border-radius:10px;font-size:12px}
+.hero{background:linear-gradient(120deg,#101923,#263746);color:white;padding:40px 0}
+.hero h1{font-size:27px;margin:0 0 8px}
+.hero p{color:#b8c3cc;font-size:13px;margin:0}
+main{padding:35px 0 65px}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:20px}
+.card{background:white;border:1px solid var(--border);border-radius:17px;padding:24px;box-shadow:0 8px 25px #18232d08}
+.profile{text-align:center}
+.avatar{width:82px;height:82px;border-radius:50%;background:#fff0e8;color:var(--orange);display:grid;place-items:center;font-size:37px;margin:0 auto 14px}
+.profile h3{margin:0;font-size:16px}
+.profile p{color:var(--muted);font-size:12px;margin:7px 0 20px}
+.status{display:inline-block;background:#fff0e8;color:#e76520;padding:6px 14px;border-radius:30px;font-size:10px}
+.menu{margin-top:20px}
+.menu button{width:100%;text-align:right;border:0;background:white;padding:14px 12px;border-radius:10px;font-size:12px;cursor:pointer;color:#53606b}
+.menu button.active,.menu button:hover{background:#fff1e9;color:#e76520}
+.panel h2{font-size:19px;margin:0 0 8px}
+.sub{font-size:12px;color:var(--muted);margin:0 0 25px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.field label{display:block;font-size:11px;margin-bottom:8px;color:#66727c}
+.field input{width:100%;padding:13px;border:1px solid var(--border);border-radius:10px;outline:none;background:#fafbfc;font-size:12px}
+.field input:focus{border-color:var(--orange)}
+.full{grid-column:1/-1}
+.primary{border:0;background:var(--orange);color:white;padding:12px 23px;border-radius:10px;font-weight:700;cursor:pointer;font-size:12px;margin-top:20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:25px}
+.stat{background:#f7f8f9;border-radius:13px;padding:17px;text-align:center}
+.stat strong{display:block;font-size:22px;color:var(--orange)}
+.stat small{font-size:10px;color:var(--muted)}
+.order{border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.order strong{font-size:12px}
+.order small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.order span{background:#fff0e8;color:#e76520;padding:6px 10px;border-radius:20px;font-size:10px}
+.hidden{display:none}
+.notice{background:#fff8e9;color:#8b6723;padding:13px;border-radius:10px;font-size:11px;line-height:2;margin-top:18px}
+footer{background:#0b121a;color:#83909b;text-align:center;padding:22px;font-size:10px}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.full{grid-column:auto}.stats{gap:7px}.stat{padding:12px 5px}.order{align-items:flex-start;flex-direction:column}.hero h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a class="logo" href="index.html">VPLUS <span>PART</span></a>
+<a class="back" href="index.html">← بازگشت به فروشگاه</a>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<h1>حساب کاربری من</h1>
+<p>مدیریت اطلاعات و مشاهده وضعیت حساب کاربری</p>
+</div>
+</section>
+<main class="container">
+<div class="layout">
+<aside>
+<div class="card profile">
+<div class="avatar">👤</div>
+<h3 id="profileName">کاربر مهمان</h3>
+<p id="profileEmail">برای ورود یا ثبت‌نام اقدام کنید</p>
+<span class="status">حساب نمایشی</span>
+</div>
+<div class="card menu">
+<button class="active" onclick="showPanel('login',this)">🔐 ورود / ثبت‌نام</button>
+<button onclick="showPanel('profile',this)">👤 اطلاعات شخصی</button>
+<button onclick="showPanel('orders',this)">📦 سفارش‌های من</button>
+<button onclick="showPanel('security',this)">🛡️ امنیت حساب</button>
+</div>
+</aside>
+<section class="card panel">
+<div id="login">
+<h2>ورود به حساب کاربری</h2>
+<p class="sub">برای ورود اطلاعات خود را وارد کنید.</p>
+<div class="fields">
+<div class="field full"><label>نام و نام خانوادگی</label><input id="name" placeholder="نام خود را وارد کنید"></div>
+<div class="field full"><label>شماره موبایل</label><input id="phone" type="tel" placeholder="09xxxxxxxxx"></div>
+<div class="field full"><label>ایمیل (اختیاری)</label><input id="email" type="email" placeholder="example@email.com"></div>
+</div>
+<button class="primary" onclick="login()">ورود نمایشی</button>
+<div class="notice">این بخش صرفاً نمایشی است. اطلاعات شما به سرور ارسال یا در پایگاه داده ذخیره نمی‌شود.</div>
+</div>
+<div id="profile" class="hidden">
+<h2>اطلاعات شخصی</h2>
+<p class="sub">اطلاعات نمایشی حساب شما</p>
+<div class="fields">
+<div class="field"><label>نام</label><input id="editName" placeholder="نام"></div>
+<div class="field"><label>شماره موبایل</label><input id="editPhone" placeholder="شماره موبایل"></div>
+<div class="field full"><label>ایمیل</label><input id="editEmail" placeholder="ایمیل"></div>
+</div>
+<button class="primary" onclick="saveProfile()">ذخیره نمایشی</button>
+</div>
+<div id="orders" class="hidden">
+<h2>سفارش‌های من</h2>
+<p class="sub">وضعیت سفارش‌های شما در فروشگاه</p>
+<div class="stats">
+<div class="stat"><strong>۰</strong><small>کل سفارش‌ها</small></div>
+<div class="stat"><strong>۰</strong><small>در حال ارسال</small></div>
+<div class="stat"><strong>۰</strong><small>تکمیل شده</small></div>
+</div>
+<div class="notice">هنوز سفارشی ثبت نشده است. این بخش در نسخه نمایشی است.</div>
+</div>
+<div id="security" class="hidden">
+<h2>امنیت حساب</h2>
+<p class="sub">تنظیمات امنیتی حساب کاربری</p>
+<div class="notice">در نسخه فعلی ورود واقعی، رمز عبور و احراز هویت فعال نیستند. این امکانات در نسخه بعدی قابل پیاده‌سازی هستند.</div>
+</div>
+</section>
+</div>
+</main>
+<footer>© تمامی حقوق محفوظ است | VPLUS PART</footer>
+<script>
+let user={name:"",phone:"",email:""};
+function showPanel(id,btn){
+document.querySelectorAll('.panel>div').forEach(x=>x.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+document.querySelectorAll('.menu button').forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+}
+function login(){
+let name=document.getElementById('name').value.trim();
+let phone=document.getElementById('phone').value.trim();
+let email=document.getElementById('email').value.trim();
+if(!name||!phone){alert('لطفاً نام و شماره موبایل را وارد کنید.');return;}
+if(!/^09\d{9}$/.test(phone)){alert('شماره موبایل معتبر نیست.');return;}
+user={name,phone,email};
+updateProfile();
+alert('ورود نمایشی با موفقیت انجام شد.');
+}
+function updateProfile(){
+document.getElementById('profileName').textContent=user.name||'کاربر مهمان';
+document.getElementById('profileEmail').textContent=user.email||user.phone||'حساب نمایشی';
+document.getElementById('editName').value=user.name;
+document.getElementById('editPhone').value=user.phone;
+document.getElementById('editEmail').value=user.email;
+}
+function saveProfile(){
+user.name=document.getElementById('editName').value.trim();
+user.phone=document.getElementById('editPhone').value.trim();
+user.email=document.getElementById('editEmail').value.trim();
+updateProfile();
+alert('اطلاعات به صورت نمایشی به‌روزرسانی شد.');
+}
+</script>
+</body>
+</html>
