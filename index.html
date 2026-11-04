@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101923">
+<title>VPLUS PART | فروشگاه قطعات خودرو</title>
+<meta name="description" content="فروشگاه تخصصی قطعات خودرو، جست‌وجو و انتخاب قطعات مورد نیاز خودروی شما.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg:#f4f6f8;
+  --dark:#101923;
+  --dark2:#182532;
+  --orange:#ff762b;
+  --text:#18232d;
+  --muted:#7b8792;
+  --white:#fff;
+  --border:#e9edf1;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input{font-family:inherit}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,92%);margin:auto}
+
+.topbar{
+  background:#0b121a;
+  color:#aab4bd;
+  font-size:12px;
+  padding:9px 0;
+}
+.topbar .container{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+header{
+  background:var(--dark);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 8px 25px #0002;
+}
+.nav{
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  font-size:23px;
+  letter-spacing:1px;
+}
+.logo-icon{
+  width:43px;height:43px;
+  border-radius:13px;
+  display:grid;place-items:center;
+  background:var(--orange);
+  font-size:24px;
+}
+.logo span{color:var(--orange)}
+.nav-links{
+  display:flex;gap:27px;
+  color:#c7d0d8;font-size:13px;
+}
+.nav-links a:hover{color:var(--orange)}
+.cart{
+  background:#253442;
+  border:1px solid #394958;
+  color:white;
+  padding:11px 17px;
+  border-radius:12px;
+  cursor:pointer;
+}
+.cart b{color:var(--orange);margin-right:5px}
+
+.hero{
+  background:
+    radial-gradient(circle at 15% 50%,#ff762b25,transparent 35%),
+    linear-gradient(120deg,#101923,#1d2c39);
+  color:white;
+  padding:75px 0 85px;
+  overflow:hidden;
+}
+.hero-content{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:30px;
+}
+.eyebrow{
+  color:var(--orange);
+  font-size:13px;
+  font-weight:700;
+}
+.hero h1{
+  font-size:clamp(32px,5vw,53px);
+  line-height:1.55;
+  margin:15px 0;
+  font-weight:900;
+}
+.hero h1 span{color:var(--orange)}
+.hero p{
+  color:#b6c2cc;
+  line-height:2.2;
+  max-width:560px;
+  font-size:14px;
+}
+.search-box{
+  margin-top:28px;
+  display:flex;
+  background:white;
+  padding:7px;
+  border-radius:15px;
+  max-width:550px;
+}
+.search-box input{
+  border:0;outline:0;
+  flex:1;min-width:0;
+  padding:12px;
+  font-size:13px;
+}
+.search-box button{
+  background:var(--orange);
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:0 23px;
+  font-weight:700;
+  cursor:pointer;
+}
+.hero-visual{
+  min-height:250px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.car-shape{
+  width:250px;height:150px;
+  border:2px solid #ffffff30;
+  border-radius:80px 100px 35px 35px;
+  transform:rotate(-8deg);
+  display:grid;place-items:center;
+  font-size:100px;
+  background:linear-gradient(145deg,#ffffff12,#ffffff03);
+  box-shadow:0 30px 80px #0005;
+}
+.visual-label{
+  position:absolute;
+  bottom:10px;
+  color:#aab7c3;
+  font-size:11px;
+  letter-spacing:3px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:-27px;
+  position:relative;
+}
+.feature{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:19px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  box-shadow:0 8px 25px #17263508;
+}
+.feature-icon{
+  width:43px;height:43px;
+  border-radius:12px;
+  background:#fff0e8;
+  display:grid;place-items:center;
+  font-size:21px;
+}
+.feature strong{font-size:13px}
+.feature small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.section{padding:65px 0}
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:25px;
+}
+.section-head h2{
+  font-size:23px;
+  margin:0 0 7px;
+}
+.section-head p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:13px;
+}
+.category{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:23px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+.category:hover,.category.active{
+  border-color:var(--orange);
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px #ff762b12;
+}
+.category-icon{font-size:32px;margin-bottom:12px}
+.category strong{font-size:12px;display:block}
+.category small{color:var(--muted);font-size:10px}
+
+.products-section{background:#fff}
+.filters{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:23px;
+}
+.filter{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#65717b;
+  padding:9px 17px;
+  border-radius:30px;
+  font-size:11px;
+  cursor:pointer;
+}
+.filter.active,.filter:hover{
+  background:var(--dark);
+  color:white;
+  border-color:var(--dark);
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+}
+.product{
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  background:white;
+  transition:.2s;
+}
+.product:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px #18232d12;
+}
+.product-image{
+  height:175px;
+  background:#f3f5f6;
+  display:grid;
+  place-items:center;
+  position:relative;
+  font-size:65px;
+}
+.product-tag{
+  position:absolute;
+  top:12px;right:12px;
+  background:#fff0e8;
+  color:#e76520;
+  font-size:10px;
+  padding:5px 10px;
+  border-radius:20px;
+}
+.product-info{padding:16px}
+.product-info small{color:var(--muted);font-size:10px}
+.product-info h3{
+  font-size:13px;
+  margin:9px 0;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:15px;
+}
+.price{
+  font-size:12px;
+  font-weight:800;
+  color:var(--dark);
+}
+.add-btn{
+  border:0;
+  background:var(--dark);
+  color:white;
+  border-radius:9px;
+  padding:9px 12px;
+  cursor:pointer;
+  font-size:11px;
+}
+.add-btn:hover{background:var(--orange)}
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.banner{
+  background:linear-gradient(110deg,#1c2c39,#101923);
+  border-radius:22px;
+  color:white;
+  padding:38px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.banner h2{font-size:22px;margin:0 0 10px}
+.banner p{font-size:12px;color:#b6c2cc;line-height:2}
+.banner-icon{font-size:75px}
+.banner a{
+  display:inline-block;
+  background:var(--orange);
+  color:white;
+  padding:11px 20px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:700;
+}
+
+footer{
+  background:#0b121a;
+  color:#d0d7dd;
+  padding:45px 0 20px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:35px;
+}
+footer h3{font-size:15px;color:white}
+footer p,footer a{
+  color:#8f9ba6;
+  font-size:11px;
+  line-height:2.5;
+}
+footer a{display:block}
+footer a:hover{color:var(--orange)}
+.copyright{
+  border-top:1px solid #ffffff15;
+  margin-top:30px;
+  padding-top:18px;
+  text-align:center;
+  font-size:10px;
+  color:#75818c;
+}
+
+.toast{
+  position:fixed;
+  bottom:22px;
+  left:22px;
+  background:#182532;
+  color:white;
+  padding:14px 20px;
+  border-radius:12px;
+  font-size:12px;
+  opacity:0;
+  transform:translateY(15px);
+  transition:.25s;
+  pointer-events:none;
+  z-index:30;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:850px){
+  .nav-links{display:none}
+  .hero-content{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  .topbar .container{justify-content:center}
+  .nav{height:68px}
+  .logo{font-size:19px}
+  .cart{padding:9px 12px;font-size:11px}
+  .hero{padding:55px 0 65px}
+  .features{grid-template-columns:1fr}
+  .feature{padding:13px}
+  .section{padding:45px 0}
+  .section-head h2{font-size:19px}
+  .categories{gap:9px}
+  .category{padding:17px 5px}
+  .category-icon{font-size:27px}
+  .category strong{font-size:10px}
+  .products{gap:10px}
+  .product-image{height:135px;font-size:48px}
+  .product-info{padding:11px}
+  .product-info h3{font-size:11px}
+  .price{font-size:10px}
+  .add-btn{padding:8px;font-size:10px}
+  .banner{padding:24px}
+  .banner-icon{font-size:48px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid>div:first-child{grid-column:1/-1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>فروشگاه تخصصی قطعات خودرو</span>
+    <span>VPLUS PART | انتخاب هوشمندانه قطعات</span>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">
+      <div class="logo-icon">V</div>
+      VPLUS <span>PART</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#">صفحه اصلی</a>
+      <a href="#categories">دسته‌بندی قطعات</a>
+      <a href="#products">محصولات</a>
+      <a href="#about">درباره ما</a>
+    </nav>
+
+    <button class="cart" onclick="showToast('سبد خرید شما هنوز به سیستم سفارش متصل نیست')">
+      🛒 سبد خرید <b id="cartCount">۰</b>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-content">
+    <div>
+      <span class="eyebrow">VPLUS PART / AUTOMOTIVE STORE</span>
+      <h1>قطعه مناسب،<br><span>انتخاب مطمئن.</span></h1>
+      <p>
+        دنیای قطعات خودرو در یک تجربه خرید متفاوت.
+        قطعه مورد نیاز خود را جست‌وجو کنید و سریع‌تر به انتخاب خود برسید.
+      </p>
+
+      <div class="search-box">
+        <input id="searchInput" type="search"
+          placeholder="نام قطعه، کد کالا یا برند را وارد کنید...">
+        <button onclick="searchProducts()">جست‌وجو</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="car-shape">🚘</div>
+      <div class="visual-label">PRECISION • QUALITY • PERFORMANCE</div>
+    </div>
+  </div>
+</section>
+
+<div class="container features">
+  <div class="feature">
+    <div class="feature-icon">⚙️</div>
+    <div><strong>تنوع قطعات</strong><small>دسترسی به دسته‌بندی‌های مختلف</small></div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🔍</div>
+    <div><strong>جست‌وجوی آسان</strong><small>پیدا کردن سریع قطعه مورد نظر</small></div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🛡️</div>
+    <div><strong>انتخاب آگاهانه</strong><small>بررسی مشخصات پیش از خرید</small></div>
+  </div>
+</div>
+
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>دسته‌بندی قطعات</h2>
+        <p>قطعه مورد نظرتان را از میان گروه‌های مختلف پیدا کنید.</p>
+      </div>
+    </div>
+
+    <div class="categories">
+      <div class="category active" onclick="filterCategory('all',this)">
+        <div class="category-icon">🚗</div>
+        <strong>همه قطعات</strong>
+        <small>مشاهده همه</small>
+      </div>
+      <div class="category" onclick="filterCategory('engine',this)">
+        <div class="category-icon">⚙️</div>
+        <strong>موتور</strong>
+        <small>قطعات موتوری</small>
+      </div>
+      <div class="category" onclick="filterCategory('brake',this)">
+        <div class="category-icon">🛑</div>
+        <strong>ترمز</strong>
+        <small>سیستم ترمز</small>
+      </div>
+      <div class="category" onclick="filterCategory('electrical',this)">
+        <div class="category-icon">🔋</div>
+        <strong>برقی</strong>
+        <small>قطعات الکتریکی</small>
+      </div>
+      <div class="category" onclick="filterCategory('body',this)">
+        <div class="category-icon">🚘</div>
+        <strong>بدنه</strong>
+        <small>قطعات بدنه</small>
+      </div>
+      <div class="category" onclick="filterCategory('filter',this)">
+        <div class="category-icon">🧰</div>
+        <strong>فیلترها</strong>
+        <small>انواع فیلتر</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section products-section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>محصولات فروشگاه</h2>
+        <p>نمونه محصولات برای نمایش ساختار فروشگاه</p>
+      </div>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" onclick="filterCategory('all',null)">همه</button>
+      <button class="filter" onclick="filterCategory('engine',null)">موتور</button>
+      <button class="filter" onclick="filterCategory('brake',null)">ترمز</button>
+      <button class="filter" onclick="filterCategory('electrical',null)">برقی</button>
+      <button class="filter" onclick="filterCategory('body',null)">بدنه</button>
+      <button class="filter" onclick="filterCategory('filter',null)">فیلتر</button>
+    </div>
+
+    <div class="products" id="productGrid">
+
+      <article class="product" data-category="engine" data-name="شمع موتور خودرو">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🔩
+        </div>
+        <div class="product-info">
+          <small>قطعات موتوری</small>
+          <h3>شمع موتور خودرو</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('شمع موتور خودرو')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="brake" data-name="لنت ترمز">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🛑
+        </div>
+        <div class="product-info">
+          <small>سیستم ترمز</small>
+          <h3>لنت ترمز</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('لنت ترمز')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="electrical" data-name="باتری خودرو">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🔋
+        </div>
+        <div class="product-info">
+          <small>قطعات برقی</small>
+          <h3>باتری خودرو</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('باتری خودرو')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="body" data-name="چراغ جلو">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>💡
+        </div>
+        <div class="product-info">
+          <small>قطعات بدنه</small>
+          <h3>چراغ جلو</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('چراغ جلو')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="filter" data-name="فیلتر روغن">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🧰
+        </div>
+        <div class="product-info">
+          <small>فیلترها</small>
+          <h3>فیلتر روغن</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('فیلتر روغن')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="engine" data-name="تسمه تایم">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>⚙️
+        </div>
+        <div class="product-info">
+          <small>قطعات موتوری</small>
+          <h3>تسمه تایم</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('تسمه تایم')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="brake" data-name="دیسک ترمز">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🔘
+        </div>
+        <div class="product-info">
+          <small>سیستم ترمز</small>
+          <h3>دیسک ترمز</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('دیسک ترمز')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="electrical" data-name="دینام خودرو">
+        <div class="product-image">
+          <span class="product-tag">نمونه محصول</span>🔌
+        </div>
+        <div class="product-info">
+          <small>قطعات برقی</small>
+          <h3>دینام خودرو</h3>
+          <div class="product-bottom">
+            <span class="price">استعلام قیمت</span>
+            <button class="add-btn" onclick="addToCart('دینام خودرو')">افزودن +</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="banner">
+      <div>
+        <h2>قطعه مناسب خودروی شما</h2>
+        <p>
+          برای تکمیل اطلاعات محصولات، برندها، قیمت‌ها و مشخصات خودروها
+          می‌توانیم فروشگاه را متناسب با نیاز واقعی شما توسعه دهیم.
+        </p>
+        <a href="#categories">مشاهده دسته‌بندی‌ها</a>
+      </div>
+      <div class="banner-icon">🏎️</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo">
+          <div class="logo-icon">V</div>
+          VPLUS <span>PART</span>
+        </div>
+        <p>تجربه‌ای متفاوت در دنیای قطعات خودرو.</p>
+      </div>
+      <div>
+        <h3>دسترسی سریع</h3>
+        <a href="#">صفحه اصلی</a>
+        <a href="#categories">دسته‌بندی‌ها</a>
+        <a href="#products">محصولات</a>
+      </div>
+      <div>
+        <h3>ارتباط با ما</h3>
+        <a href="mailto:info@example.com">ایمیل فروشگاه</a>
+        <a href="#about">درباره فروشگاه</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © تمامی حقوق این وب‌سایت محفوظ است.
+      VPLUS PART
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let cartCount = 0;
+let currentCategory = 'all';
+
+function showToast(message){
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+function addToCart(name){
+  cartCount++;
+  document.getElementById('cartCount').textContent =
+    new Intl.NumberFormat('fa-IR').format(cartCount);
+  showToast(name + ' به فهرست انتخاب اضافه شد.');
+}
+
+function filterCategory(category, clicked){
+  currentCategory = category;
+
+  document.querySelectorAll('.category').forEach(el =>
+    el.classList.remove('active')
+  );
+  document.querySelectorAll('.filter').forEach(el =>
+    el.classList.remove('active')
+  );
+
+  if(clicked){
+    clicked.classList.add('active');
+  }else{
+    const buttons = document.querySelectorAll('.filter');
+    buttons.forEach(btn => {
+      if(btn.getAttribute('onclick').includes("'" + category + "'")){
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  document.querySelectorAll('.product').forEach(product => {
+    product.style.display =
+      category === 'all' ||
+      product.dataset.category === category
+      ? '' : 'none';
+  });
+
+  if(clicked && clicked.classList.contains('category')){
+    document.getElementById('products').scrollIntoView({
+      behavior:'smooth'
+    });
+  }
+}
+
+function searchProducts(){
+  const query = document.getElementById('searchInput')
+    .value.trim().toLowerCase();
+
+  let found = 0;
+
+  document.querySelectorAll('.product').forEach(product => {
+    const name = product.dataset.name.toLowerCase();
+    const match = name.includes(query) &&
+      (currentCategory === 'all' ||
+       product.dataset.category === currentCategory);
+
+    product.style.display = match ? '' : 'none';
+    if(match) found++;
+  });
+
+  document.getElementById('products').scrollIntoView({
+    behavior:'smooth'
+  });
+
+  if(found === 0){
+    showToast('محصولی با این مشخصات پیدا نشد.');
+  }
+}
+
+document.getElementById('searchInput')
+  .addEventListener('keydown', function(e){
+    if(e.key === 'Enter') searchProducts();
+  });
+</script>
+
+</body>
+</html>
