@@ -1018,9 +1018,9 @@
     // دریافت محصولات از Google Sheets از طریق API
     async function loadProducts() {
       try {
-        if (!window.VPlusAPI) {
-          throw new Error("فایل api.js بارگذاری نشده است.");
-        }
+        if (typeof VPlusAPI === "undefined") {
+  throw new Error("فایل api.js بارگذاری نشده است.");
+}
 
         const response = await VPlusAPI.products();
 
