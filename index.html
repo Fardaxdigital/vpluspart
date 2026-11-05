@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -42,20 +43,6 @@
     .container {
       width: min(1180px, 92%);
       margin: auto;
-    }
-
-    .topbar {
-      background: #0b1422;
-      color: #d7dfeb;
-      font-size: 12px;
-      padding: 9px 0;
-    }
-
-    .topbar-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
     }
 
     header {
@@ -351,6 +338,7 @@
     }
 
     .category strong { font-size: 13px; }
+
     .category small {
       display: block;
       color: var(--muted);
@@ -539,7 +527,6 @@
     }
 
     @media(max-width:600px) {
-      .topbar-inner { justify-content: center; }
       .header-main { gap: 12px; }
       .brand-name { font-size: 16px; }
       .brand-logo { width: 39px; height: 39px; }
@@ -570,13 +557,6 @@
 </head>
 
 <body>
-
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>فروشگاه تخصصی قطعات خودرو VPLUS PART</span>
-      <span>کیفیت، اصالت و انتخاب مطمئن</span>
-    </div>
-  </div>
 
   <header>
     <div class="container header-main">
@@ -791,17 +771,33 @@
     let allProducts = [];
     let selectedCategory = "";
 
+    // تبدیل اعداد فارسی و عربی به انگلیسی
     function toEnglishDigits(value) {
       return String(value ?? "").replace(/[۰-۹٠-٩]/g, digit => {
-        return "۰۱۲۳۴۵۶۷۸۹".indexOf(digit) !== -1
-          ? "۰۱۲۳۴۵۶۷۸۹".indexOf(digit)
-          : "٠١٢٣٤٥٦٧٨٩".indexOf(digit);
+        const fa = "۰۱۲۳۴۵۶۷۸۹";
+        const ar = "٠١٢٣٤٥٦٧٨٩";
+
+        if (fa.includes(digit)) return fa.indexOf(digit);
+        return ar.indexOf(digit);
       });
     }
 
+    // یکسان‌سازی کد برای جستجوی تصویر
+    function normalizeCode(value) {
+      return toEnglishDigits(String(value ?? "").trim())
+        .replace(/\s+/g, "");
+    }
+
     function formatPrice(value) {
-      const number = Number(toEnglishDigits(value));
-      if (!Number.isFinite(number) || number <= 0) return "تماس بگیرید";
+      const cleaned = toEnglishDigits(value)
+        .replace(/[,\s٬،]/g, "");
+
+      const number = Number(cleaned);
+
+      if (!Number.isFinite(number) || number <= 0) {
+        return "تماس بگیرید";
+      }
+
       return new Intl.NumberFormat("fa-IR").format(number) + " تومان";
     }
 
@@ -815,34 +811,108 @@
       })[char]);
     }
 
+    // اطلاعات محصول از شیت
     function getProductName(product) {
-      return product.Name || product.name || product.title || "محصول بدون نام";
+      return product.Name ||
+        product.name ||
+        product.ProductName ||
+        product.productName ||
+        product.title ||
+        "محصول بدون نام";
     }
 
     function getProductCode(product) {
-      return product.ProductCode || product.productCode ||
-        product.SKU || product.sku || "";
+      return product.ProductCode ||
+        product.productCode ||
+        product.SKU ||
+        product.sku ||
+        product.Code ||
+        product.code ||
+        "";
     }
 
     function getProductPrice(product) {
-      return product.Price ?? product.price ?? 0;
-    }
-
-    function getProductImage(product) {
-      return product.MainImageURL || product.mainImageURL ||
-        product.image || product.imageUrl || "";
+      return product.Price ??
+        product.price ??
+        product.SellingPrice ??
+        product.sellingPrice ??
+        0;
     }
 
     function getProductBrand(product) {
-      return product.BrandName || product.brandName ||
-        product.brand || "";
+      return product.BrandName ||
+        product.brandName ||
+        product.brand ||
+        "";
     }
 
     function getProductCategory(product) {
-      return product.CategoryName || product.categoryName ||
-        product.category || "";
+      return product.CategoryName ||
+        product.categoryName ||
+        product.category ||
+        "";
     }
 
+    // ساخت مسیرهای احتمالی تصویر با استفاده از کد محصول
+    function getProductImageCandidates(product) {
+      const code = normalizeCode(getProductCode(product));
+
+      if (!code) return [];
+
+      const extensions = ["jpg", "jpeg", "png", "webp"];
+      const candidates = [];
+
+      extensions.forEach(extension => {
+        candidates.push(
+          "image/" + encodeURIComponent(code) + "." + extension
+        );
+      });
+
+      // اگر تصویر مستقیم در شیت هم ثبت شده باشد،
+      // پس از امتحان تصاویر پوشه از آن استفاده می‌شود.
+      const remoteImage =
+        product.MainImageURL ||
+        product.mainImageURL ||
+        product.image ||
+        product.imageUrl ||
+        "";
+
+      if (remoteImage && !candidates.includes(remoteImage)) {
+        candidates.push(remoteImage);
+      }
+
+      return candidates;
+    }
+
+    // در صورت پیدا نشدن تصویر، پسوند بعدی امتحان می‌شود
+    function tryNextProductImage(img) {
+      let candidates = [];
+
+      try {
+        candidates = JSON.parse(img.dataset.candidates || "[]");
+      } catch (error) {
+        candidates = [];
+      }
+
+      const nextIndex = Number(img.dataset.index || 0) + 1;
+
+      if (nextIndex < candidates.length) {
+        img.dataset.index = String(nextIndex);
+        img.src = candidates[nextIndex];
+        return;
+      }
+
+      img.onerror = null;
+      img.style.display = "none";
+
+      const placeholder = document.createElement("div");
+      placeholder.className = "product-placeholder";
+      placeholder.textContent = "⚙";
+
+      img.parentElement.appendChild(placeholder);
+    }
+
+    // ساخت کارت محصولات
     function renderProducts(products) {
       if (!products.length) {
         productGrid.innerHTML = `
@@ -856,38 +926,75 @@
         const name = escapeHTML(getProductName(product));
         const code = escapeHTML(getProductCode(product));
         const brand = escapeHTML(getProductBrand(product));
-        const image = getProductImage(product);
         const price = formatPrice(getProductPrice(product));
-        const stock = Number(product.StockQuantity ?? product.stockQuantity ?? 0);
 
-        const imageHTML = image
-          ? `<img src="${escapeHTML(image)}" alt="${name}" loading="lazy"
-               onerror="this.parentElement.innerHTML='<div class=product-placeholder>⚙</div>'">`
+        const stock = Number(
+          toEnglishDigits(
+            product.StockQuantity ??
+            product.stockQuantity ??
+            0
+          )
+        );
+
+        const imageCandidates = getProductImageCandidates(product);
+
+        const imageHTML = imageCandidates.length
+          ? `
+            <img
+              src="${escapeHTML(imageCandidates[0])}"
+              data-candidates="${escapeHTML(JSON.stringify(imageCandidates))}"
+              data-index="0"
+              alt="${name}"
+              loading="lazy"
+              onerror="tryNextProductImage(this)"
+            >
+          `
           : `<div class="product-placeholder">⚙</div>`;
 
         return `
           <article class="product-card">
+
             <div class="product-image">
               ${imageHTML}
               <span class="product-label">VPLUS PART</span>
             </div>
+
             <div class="product-info">
-              ${brand ? `<div class="product-brand">${brand}</div>` : ""}
+
+              ${brand
+                ? `<div class="product-brand">${brand}</div>`
+                : ""
+              }
+
               <div class="product-name">${name}</div>
-              ${code ? `<div class="product-code">کد کالا: ${code}</div>` : ""}
+
+              ${code
+                ? `<div class="product-code">کد کالا: ${code}</div>`
+                : ""
+              }
+
               <div class="product-price">
                 ${escapeHTML(price)}
               </div>
+
               <div class="product-stock">
-                ${stock > 0 ? "● موجود در انبار" : "● برای اطلاع از موجودی تماس بگیرید"}
+                ${stock > 0
+                  ? "● موجود در انبار"
+                  : "● برای اطلاع از موجودی تماس بگیرید"
+                }
               </div>
+
             </div>
-          </article>`;
+          </article>
+        `;
       }).join("");
     }
 
+    // جستجو و فیلتر محصولات
     function filterProducts() {
-      const search = toEnglishDigits(searchInput.value.trim()).toLowerCase();
+      const search = toEnglishDigits(
+        searchInput.value.trim()
+      ).toLowerCase();
 
       const filtered = allProducts.filter(product => {
         const searchable = [
@@ -898,6 +1005,7 @@
         ].join(" ").toLowerCase();
 
         const matchesSearch = searchable.includes(search);
+
         const matchesCategory = !selectedCategory ||
           getProductCategory(product).includes(selectedCategory);
 
@@ -907,6 +1015,7 @@
       renderProducts(filtered);
     }
 
+    // دریافت محصولات از Google Sheets از طریق API
     async function loadProducts() {
       try {
         if (!window.VPlusAPI) {
@@ -915,7 +1024,11 @@
 
         const response = await VPlusAPI.products();
 
-        let products = response.products || response.data || response.items || [];
+        let products =
+          response.products ||
+          response.data ||
+          response.items ||
+          [];
 
         if (!Array.isArray(products)) {
           products = [];
@@ -923,26 +1036,37 @@
 
         allProducts = products.filter(product => {
           const active = product.IsActive ?? product.isActive;
-          return active === undefined || active === "" ||
-            active === true || active === "TRUE" || active === "true" ||
-            active === 1 || active === "1";
+
+          return active === undefined ||
+            active === "" ||
+            active === true ||
+            active === "TRUE" ||
+            active === "true" ||
+            active === 1 ||
+            active === "1";
         });
 
         renderProducts(allProducts);
 
       } catch (error) {
-        console.error(error);
+        console.error("Products loading error:", error);
+
         productGrid.innerHTML = `
           <div class="empty-state">
-            <strong>دریافت محصولات امکان‌پذیر نشد.</strong><br>
-            لطفاً اتصال API و تنظیمات Google Apps Script را بررسی کنید.<br>
+            <strong>دریافت محصولات امکان‌پذیر نشد.</strong>
+            <br>
+            لطفاً اتصال API و تنظیمات Google Apps Script را بررسی کنید.
+            <br>
             <small>${escapeHTML(error.message)}</small>
-          </div>`;
+          </div>
+        `;
       }
     }
 
+    // جستجوی زنده
     searchInput.addEventListener("input", filterProducts);
 
+    // انتخاب دسته‌بندی
     document.querySelectorAll("[data-category]").forEach(category => {
       category.addEventListener("click", () => {
         selectedCategory = category.dataset.category;
@@ -951,12 +1075,14 @@
       });
     });
 
+    // نمایش همه محصولات
     document.getElementById("showAll").addEventListener("click", () => {
       selectedCategory = "";
       searchInput.value = "";
       renderProducts(allProducts);
     });
 
+    // شروع دریافت اطلاعات
     loadProducts();
   </script>
 
