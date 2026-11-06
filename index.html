@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101b2d"><meta name="description" content="فروشگاه تخصصی قطعات خودرو">
+<title>VPLUS PART | فروشگاه قطعات خودرو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="topline">فروشگاه تخصصی قطعات خودرو <span>پشتیبانی و پیگیری سفارش</span></div>
+<header class="site-header"><div class="wrap head">
+<a class="logo" href="index.html"><b>V+</b><span>VPLUS PART<small>PARTS & COMPONENTS</small></span></a>
+<button class="mobile-menu" id="menuToggle" aria-label="منو">☰</button>
+<nav id="mainNav"><a href="#home">خانه</a><a href="#categories">دسته‌بندی‌ها</a><a href="#products">محصولات</a><a href="support.html">پشتیبانی</a></nav>
+<div class="head-actions"><a class="head-link" href="account.html">حساب کاربری</a><button class="cart-button" id="openCart">سبد خرید <strong id="cartCount">۰</strong></button></div>
+</div></header>
+<main>
+<section class="hero wrap" id="home"><div class="hero-copy"><span class="eyebrow">VPLUS PART · AUTO PARTS</span><h1>قطعه درست را،<br><em>با اطمینان انتخاب کن.</em></h1><p>جستجو و بررسی قطعات خودرو، مشاهده موجودی و ثبت سفارش در یک مسیر ساده.</p><a class="btn btn-orange" href="#products">مشاهده محصولات <span>←</span></a><div class="hero-points"><span>✓ اطلاعات شفاف</span><span>✓ پیگیری سفارش</span><span>✓ پشتیبانی مشتریان</span></div></div><div class="hero-art"><div class="gear">⚙</div><div class="art-card"><b>V+</b><span>PRECISION<br>PARTS</span></div><i class="art-line"></i></div></section>
+<section class="wrap trust-row"><div><b>01</b><span>جستجوی سریع<small>نام یا کد فنی</small></span></div><div><b>02</b><span>موجودی مشخص<small>اطلاعات به‌روز</small></span></div><div><b>03</b><span>ثبت سفارش<small>بدون پیچیدگی</small></span></div><div><b>04</b><span>پشتیبانی<small>پیگیری درخواست</small></span></div></section>
+<section class="wrap section" id="categories"><div class="section-head"><div><span class="eyebrow">EXPLORE BY CATEGORY</span><h2>دسته‌بندی قطعات</h2><p>از دسته موردنظر شروع کن.</p></div></div><div id="categoryGrid" class="category-grid"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></section>
+<section class="section products-section" id="products"><div class="wrap"><div class="section-head"><div><span class="eyebrow">OUR CATALOG</span><h2>محصولات فروشگاه</h2><p>محصولات موجود و قابل سفارش</p></div><button class="btn btn-light" id="refreshProducts">بروزرسانی ↻</button></div>
+<div class="toolbar"><label class="searchbox">⌕<input id="searchProducts" placeholder="نام قطعه، کد کالا یا خودرو را جستجو کن..."></label><select id="categoryFilter"><option value="">همه دسته‌ها</option></select><select id="sortProducts"><option value="newest">جدیدترین</option><option value="price-asc">ارزان‌ترین</option><option value="price-desc">گران‌ترین</option><option value="name">نام محصول</option></select></div>
+<div class="results-line"><span id="productCount">در حال دریافت محصولات...</span><span id="connectionState">در حال اتصال</span></div><div id="productGrid" class="product-grid"><div class="loading-card">در حال دریافت کاتالوگ...</div></div></div></section>
+<section class="wrap callout"><div><span class="eyebrow">NEED HELP?</span><h2>قطعه موردنظرت را پیدا نکردی؟</h2><p>درخواستت را ثبت کن تا تیم پشتیبانی بررسی کند.</p></div><a class="btn btn-orange" href="support.html">ثبت درخواست پشتیبانی ←</a></section>
+</main>
+<footer><div class="wrap footer-inner"><a class="logo" href="#"><b>V+</b><span>VPLUS PART<small>PARTS & COMPONENTS</small></span></a><p>فروشگاه تخصصی معرفی، بررسی و سفارش قطعات خودرو.</p><div><a href="account.html">حساب کاربری</a><a href="support.html">پشتیبانی</a><a href="admin.html">مدیریت</a></div><small>© VPLUS PART — تمامی حقوق محفوظ است.</small></div></footer>
+<div id="cartDrawer" class="drawer-backdrop" aria-hidden="true"><aside class="drawer"><div class="drawer-head"><h3>سبد خرید</h3><button id="closeCart" class="icon-btn">×</button></div><div id="cartItems"></div><div class="drawer-bottom"><div class="total-line"><span>جمع کل</span><b id="cartTotal">۰ تومان</b></div><button id="checkoutBtn" class="btn btn-orange full">ادامه و ثبت سفارش</button><small>ثبت نهایی سفارش پس از ورود به حساب کاربری انجام می‌شود.</small></div></aside></div>
+<div id="toast" class="toast"></div>
+<script src="assets/app.js"></script>
+</body></html>
