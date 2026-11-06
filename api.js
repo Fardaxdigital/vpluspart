@@ -2,7 +2,7 @@ const VPlusAPI = (() => {
   "use strict";
 
   const BASE_URL =
-    "https://script.google.com/macros/s/AKfycbzsAFBdn4j0mLtAKJpU1SXwtVKnk1t_kwkpUnNXRb-0cFEstL4HNiqpe177vrQ7G2-gsA/exec";
+    "https://script.google.com/macros/s/AKfycbwQTtdg7CiZvMwmBMcCj6MGZ3RDWj5rNKTbfoDB0WSsiFAx9gLDI3vFb8qQG6b5Lug7GA/exec";
 
   async function request(url, options = {}) {
     let response;
